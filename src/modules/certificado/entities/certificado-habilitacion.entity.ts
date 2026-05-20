@@ -33,24 +33,18 @@ export class CertificadoHabilitacionEntity extends BaseAuditableEntity {
   @Column({ name: 'documento_url', type: 'varchar', length: 500, nullable: true })
   documentoUrl: string | null;
 
-  @ManyToOne(() => PrestadorEntity, (prestador) => prestador.certificados, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => PrestadorEntity, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'prestador_id' })
   prestador: PrestadorEntity;
 
-  @ManyToOne(() => SedeEntity, (sede) => sede.certificados, {
-    onDelete: 'SET NULL',
-    nullable: true,
-  })
+  @ManyToOne(() => SedeEntity, { onDelete: 'SET NULL', nullable: true })
   @JoinColumn({ name: 'sede_id' })
   sede: SedeEntity | null;
 
-  @ManyToOne(
-    () => ServicioHabilitadoEntity,
-    (servicio) => servicio.certificados,
-    { onDelete: 'SET NULL', nullable: true },
-  )
+  @ManyToOne(() => ServicioHabilitadoEntity, {
+    onDelete: 'SET NULL',
+    nullable: true,
+  })
   @JoinColumn({ name: 'servicio_habilitado_id' })
   servicioHabilitado: ServicioHabilitadoEntity | null;
 }

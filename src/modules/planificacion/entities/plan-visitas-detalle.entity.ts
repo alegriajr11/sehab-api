@@ -25,11 +25,7 @@ export class PlanVisitasDetalleEntity extends BaseAuditableEntity {
   @JoinColumn({ name: 'plan_visitas_id' })
   planVisitas: PlanVisitasEntity;
 
-  @ManyToOne(
-    () => ServicioCatalogoEntity,
-    (servicio) => servicio.planesDetalle,
-    { onDelete: 'RESTRICT' },
-  )
+  @ManyToOne(() => ServicioCatalogoEntity, { onDelete: 'RESTRICT' })
   @JoinColumn({ name: 'servicio_catalogo_id' })
   servicioCatalogo: ServicioCatalogoEntity;
 }

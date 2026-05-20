@@ -1,8 +1,6 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
 import { BaseCatalogEntity } from '../../../common/entities/base-catalog.entity';
 import { CriterioEntity } from './criterio.entity';
-import { AutoevaluacionItemEntity } from '../../evaluacion/entities/autoevaluacion-item.entity';
-import { VisitaResultadoItemEntity } from '../../evaluacion/entities/visita-resultado-item.entity';
 
 @Entity('criterio_version')
 @Index('idx_criterio_version_criterio', ['criterioId'])
@@ -28,10 +26,4 @@ export class CriterioVersionEntity extends BaseCatalogEntity {
   })
   @JoinColumn({ name: 'criterio_id' })
   criterio: CriterioEntity;
-
-  @OneToMany(() => AutoevaluacionItemEntity, (item) => item.criterioVersion)
-  autoevaluacionItems: AutoevaluacionItemEntity[];
-
-  @OneToMany(() => VisitaResultadoItemEntity, (item) => item.criterioVersion)
-  visitaResultadoItems: VisitaResultadoItemEntity[];
 }

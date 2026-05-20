@@ -12,7 +12,6 @@ import { SedeEntity } from '../../prestador/entities/sede.entity';
 import { ServicioHabilitadoEntity } from '../../prestador/entities/servicio-habilitado.entity';
 import { CapacidadTipoEntity } from './capacidad-tipo.entity';
 import { CapacidadMovimientoEntity } from './capacidad-movimiento.entity';
-import { NovedadEntity } from '../../novedad/entities/novedad.entity';
 
 @Entity('capacidad_instalada')
 @Index('idx_capacidad_instalada_prestador', ['prestadorId'])
@@ -37,23 +36,15 @@ export class CapacidadInstaladaEntity extends BaseAuditableEntity {
   @Column({ type: 'json', nullable: true })
   detalle: Record<string, unknown> | null;
 
-  @ManyToOne(() => PrestadorEntity, (prestador) => prestador.capacidadesInstaladas, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => PrestadorEntity, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'prestador_id' })
   prestador: PrestadorEntity;
 
-  @ManyToOne(() => SedeEntity, (sede) => sede.capacidadesInstaladas, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => SedeEntity, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'sede_id' })
   sede: SedeEntity;
 
-  @ManyToOne(
-    () => ServicioHabilitadoEntity,
-    (servicio) => servicio.capacidadesInstaladas,
-    { onDelete: 'CASCADE' },
-  )
+  @ManyToOne(() => ServicioHabilitadoEntity, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'servicio_habilitado_id' })
   servicioHabilitado: ServicioHabilitadoEntity;
 
@@ -68,7 +59,4 @@ export class CapacidadInstaladaEntity extends BaseAuditableEntity {
     (movimiento) => movimiento.capacidadInstalada,
   )
   movimientos: CapacidadMovimientoEntity[];
-
-  @OneToMany(() => NovedadEntity, (novedad) => novedad.capacidadInstalada)
-  novedades: NovedadEntity[];
 }

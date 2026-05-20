@@ -31,10 +31,7 @@ export class VisitaParticipanteEntity extends BaseAuditableEntity {
   @JoinColumn({ name: 'visita_id' })
   visita: VisitaEntity;
 
-  @ManyToOne(() => UsuarioEntity, (usuario) => usuario.participacionesVisita, {
-    onDelete: 'SET NULL',
-    nullable: true,
-  })
+  @ManyToOne(() => UsuarioEntity, { onDelete: 'SET NULL', nullable: true })
   @JoinColumn({ name: 'usuario_id' })
   usuario: UsuarioEntity | null;
 }

@@ -5,16 +5,10 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
-  OneToOne,
 } from 'typeorm';
 import { BaseAuditableEntity } from '../../../common/entities/base-auditable.entity';
 import { RolEntity } from './rol.entity';
 import { AuditoriaEntity } from './auditoria.entity';
-import { AutoevaluacionEntity } from '../../evaluacion/entities/autoevaluacion.entity';
-import { VisitaEntity } from '../../evaluacion/entities/visita.entity';
-import { VisitaParticipanteEntity } from '../../evaluacion/entities/visita-participante.entity';
-import { ActaFirmaEntity } from '../../evaluacion/entities/acta-firma.entity';
-import { FirmaDigitalEntity } from '../../firma/entities/firma-digital.entity';
 
 @Entity('usuario')
 @Index('idx_usuario_email', ['email'], { unique: true })
@@ -51,19 +45,4 @@ export class UsuarioEntity extends BaseAuditableEntity {
 
   @OneToMany(() => AuditoriaEntity, (auditoria) => auditoria.usuario)
   auditorias: AuditoriaEntity[];
-
-  @OneToMany(() => AutoevaluacionEntity, (autoeval) => autoeval.creadoPor)
-  autoevaluacionesCreadas: AutoevaluacionEntity[];
-
-  @OneToMany(() => VisitaEntity, (visita) => visita.creadaPor)
-  visitasCreadas: VisitaEntity[];
-
-  @OneToMany(() => VisitaParticipanteEntity, (participante) => participante.usuario)
-  participacionesVisita: VisitaParticipanteEntity[];
-
-  @OneToMany(() => ActaFirmaEntity, (firma) => firma.usuario)
-  firmasActa: ActaFirmaEntity[];
-
-  @OneToOne(() => FirmaDigitalEntity, (firma) => firma.usuario)
-  firmaDigital: FirmaDigitalEntity;
 }

@@ -4,12 +4,9 @@ import {
   Index,
   JoinColumn,
   ManyToOne,
-  OneToMany,
 } from 'typeorm';
 import { BaseCatalogEntity } from '../../../common/entities/base-catalog.entity';
 import { DepartamentoEntity } from './departamento.entity';
-import { PrestadorEntity } from '../../prestador/entities/prestador.entity';
-import { SedeEntity } from '../../prestador/entities/sede.entity';
 
 @Entity('municipio')
 @Index('idx_municipio_departamento', ['departamentoId'])
@@ -29,10 +26,4 @@ export class MunicipioEntity extends BaseCatalogEntity {
   })
   @JoinColumn({ name: 'departamento_id' })
   departamento: DepartamentoEntity;
-
-  @OneToMany(() => PrestadorEntity, (prestador) => prestador.municipio)
-  prestadores: PrestadorEntity[];
-
-  @OneToMany(() => SedeEntity, (sede) => sede.municipio)
-  sedes: SedeEntity[];
 }

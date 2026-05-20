@@ -9,9 +9,6 @@ import {
 import { BaseCatalogEntity } from '../../../common/entities/base-catalog.entity';
 import { GrupoServicioEntity } from './grupo-servicio.entity';
 import { EspecificidadServicioEntity } from './especificidad-servicio.entity';
-import { ServicioHabilitadoEntity } from '../../prestador/entities/servicio-habilitado.entity';
-import { CriterioAplicacionEntity } from '../../estandar/entities/criterio-aplicacion.entity';
-import { PlanVisitasDetalleEntity } from '../../planificacion/entities/plan-visitas-detalle.entity';
 
 @Entity('servicio_catalogo')
 @Index('idx_servicio_catalogo_grupo', ['grupoServicioId'])
@@ -40,22 +37,4 @@ export class ServicioCatalogoEntity extends BaseCatalogEntity {
     (especificidad) => especificidad.servicioCatalogo,
   )
   especificidades: EspecificidadServicioEntity[];
-
-  @OneToMany(
-    () => ServicioHabilitadoEntity,
-    (habilitado) => habilitado.servicioCatalogo,
-  )
-  serviciosHabilitados: ServicioHabilitadoEntity[];
-
-  @OneToMany(
-    () => CriterioAplicacionEntity,
-    (aplicacion) => aplicacion.servicioCatalogo,
-  )
-  criteriosAplicacion: CriterioAplicacionEntity[];
-
-  @OneToMany(
-    () => PlanVisitasDetalleEntity,
-    (detalle) => detalle.servicioCatalogo,
-  )
-  planesDetalle: PlanVisitasDetalleEntity[];
 }

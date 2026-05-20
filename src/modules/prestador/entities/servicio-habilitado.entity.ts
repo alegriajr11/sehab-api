@@ -4,7 +4,6 @@ import {
   Index,
   JoinColumn,
   ManyToOne,
-  OneToMany,
 } from 'typeorm';
 import { BaseAuditableEntity } from '../../../common/entities/base-auditable.entity';
 import { ServicioHabilitadoEstadoEnum } from '../../../common/enums';
@@ -13,12 +12,6 @@ import { ServicioCatalogoEntity } from '../../catalogo/entities/servicio-catalog
 import { ModalidadServicioEntity } from '../../catalogo/entities/modalidad-servicio.entity';
 import { ComplejidadEntity } from '../../catalogo/entities/complejidad.entity';
 import { EspecificidadServicioEntity } from '../../catalogo/entities/especificidad-servicio.entity';
-import { CapacidadInstaladaEntity } from '../../capacidad/entities/capacidad-instalada.entity';
-import { AutoevaluacionEntity } from '../../evaluacion/entities/autoevaluacion.entity';
-import { VisitaEntity } from '../../evaluacion/entities/visita.entity';
-import { NovedadEntity } from '../../novedad/entities/novedad.entity';
-import { CertificadoHabilitacionEntity } from '../../certificado/entities/certificado-habilitacion.entity';
-import { DistintivoHabilitacionEntity } from '../../certificado/entities/distintivo-habilitacion.entity';
 
 @Entity('servicio_habilitado')
 @Index('idx_servicio_habilitado_sede', ['sedeId'])
@@ -60,58 +53,22 @@ export class ServicioHabilitadoEntity extends BaseAuditableEntity {
   @JoinColumn({ name: 'sede_id' })
   sede: SedeEntity;
 
-  @ManyToOne(
-    () => ServicioCatalogoEntity,
-    (catalogo) => catalogo.serviciosHabilitados,
-    { onDelete: 'RESTRICT' },
-  )
+  @ManyToOne(() => ServicioCatalogoEntity, { onDelete: 'RESTRICT' })
   @JoinColumn({ name: 'servicio_catalogo_id' })
   servicioCatalogo: ServicioCatalogoEntity;
 
-  @ManyToOne(() => ModalidadServicioEntity, (modalidad) => modalidad.serviciosHabilitados, {
-    onDelete: 'RESTRICT',
-  })
+  @ManyToOne(() => ModalidadServicioEntity, { onDelete: 'RESTRICT' })
   @JoinColumn({ name: 'modalidad_id' })
   modalidad: ModalidadServicioEntity;
 
-  @ManyToOne(() => ComplejidadEntity, (complejidad) => complejidad.serviciosHabilitados, {
-    onDelete: 'RESTRICT',
-  })
+  @ManyToOne(() => ComplejidadEntity, { onDelete: 'RESTRICT' })
   @JoinColumn({ name: 'complejidad_id' })
   complejidad: ComplejidadEntity;
 
-  @ManyToOne(
-    () => EspecificidadServicioEntity,
-    (especificidad) => especificidad.serviciosHabilitados,
-    { onDelete: 'SET NULL', nullable: true },
-  )
+  @ManyToOne(() => EspecificidadServicioEntity, {
+    onDelete: 'SET NULL',
+    nullable: true,
+  })
   @JoinColumn({ name: 'especificidad_id' })
   especificidad: EspecificidadServicioEntity | null;
-
-  @OneToMany(
-    () => CapacidadInstaladaEntity,
-    (capacidad) => capacidad.servicioHabilitado,
-  )
-  capacidadesInstaladas: CapacidadInstaladaEntity[];
-
-  @OneToMany(() => AutoevaluacionEntity, (autoeval) => autoeval.servicioHabilitado)
-  autoevaluaciones: AutoevaluacionEntity[];
-
-  @OneToMany(() => VisitaEntity, (visita) => visita.servicioHabilitado)
-  visitas: VisitaEntity[];
-
-  @OneToMany(() => NovedadEntity, (novedad) => novedad.servicioHabilitado)
-  novedades: NovedadEntity[];
-
-  @OneToMany(
-    () => CertificadoHabilitacionEntity,
-    (certificado) => certificado.servicioHabilitado,
-  )
-  certificados: CertificadoHabilitacionEntity[];
-
-  @OneToMany(
-    () => DistintivoHabilitacionEntity,
-    (distintivo) => distintivo.servicioHabilitado,
-  )
-  distintivos: DistintivoHabilitacionEntity[];
 }

@@ -38,17 +38,11 @@ export class AutoevaluacionItemEntity extends BaseAuditableEntity {
   @JoinColumn({ name: 'autoevaluacion_id' })
   autoevaluacion: AutoevaluacionEntity;
 
-  @ManyToOne(() => CriterioEntity, (criterio) => criterio.autoevaluacionItems, {
-    onDelete: 'RESTRICT',
-  })
+  @ManyToOne(() => CriterioEntity, { onDelete: 'RESTRICT' })
   @JoinColumn({ name: 'criterio_id' })
   criterio: CriterioEntity;
 
-  @ManyToOne(
-    () => CriterioVersionEntity,
-    (version) => version.autoevaluacionItems,
-    { onDelete: 'RESTRICT' },
-  )
+  @ManyToOne(() => CriterioVersionEntity, { onDelete: 'RESTRICT' })
   @JoinColumn({ name: 'criterio_version_id' })
   criterioVersion: CriterioVersionEntity;
 }

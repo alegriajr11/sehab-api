@@ -10,9 +10,6 @@ import { BaseCatalogEntity } from '../../../common/entities/base-catalog.entity'
 import { EstandarEntity } from './estandar.entity';
 import { CriterioVersionEntity } from './criterio-version.entity';
 import { CriterioAplicacionEntity } from './criterio-aplicacion.entity';
-import { AutoevaluacionItemEntity } from '../../evaluacion/entities/autoevaluacion-item.entity';
-import { VisitaResultadoItemEntity } from '../../evaluacion/entities/visita-resultado-item.entity';
-import { ActividadCriterioEntity } from '../../pamec/entities/actividad-criterio.entity';
 
 @Entity('criterio')
 @Index('idx_criterio_codigo', ['codigo'], { unique: true })
@@ -51,13 +48,4 @@ export class CriterioEntity extends BaseCatalogEntity {
 
   @OneToMany(() => CriterioAplicacionEntity, (aplicacion) => aplicacion.criterio)
   aplicaciones: CriterioAplicacionEntity[];
-
-  @OneToMany(() => AutoevaluacionItemEntity, (item) => item.criterio)
-  autoevaluacionItems: AutoevaluacionItemEntity[];
-
-  @OneToMany(() => VisitaResultadoItemEntity, (item) => item.criterio)
-  visitaResultadoItems: VisitaResultadoItemEntity[];
-
-  @OneToMany(() => ActividadCriterioEntity, (ac) => ac.criterio)
-  actividadesCriterio: ActividadCriterioEntity[];
 }

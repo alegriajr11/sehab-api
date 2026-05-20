@@ -31,33 +31,31 @@ export class CriterioAplicacionEntity extends BaseCatalogEntity {
   @JoinColumn({ name: 'criterio_id' })
   criterio: CriterioEntity;
 
-  @ManyToOne(
-    () => ServicioCatalogoEntity,
-    (servicio) => servicio.criteriosAplicacion,
-    { onDelete: 'SET NULL', nullable: true },
-  )
+  @ManyToOne(() => ServicioCatalogoEntity, {
+    onDelete: 'SET NULL',
+    nullable: true,
+  })
   @JoinColumn({ name: 'servicio_catalogo_id' })
   servicioCatalogo: ServicioCatalogoEntity | null;
 
-  @ManyToOne(() => ModalidadServicioEntity, (modalidad) => modalidad.criteriosAplicacion, {
+  @ManyToOne(() => ModalidadServicioEntity, {
     onDelete: 'SET NULL',
     nullable: true,
   })
   @JoinColumn({ name: 'modalidad_id' })
   modalidad: ModalidadServicioEntity | null;
 
-  @ManyToOne(() => ComplejidadEntity, (complejidad) => complejidad.criteriosAplicacion, {
+  @ManyToOne(() => ComplejidadEntity, {
     onDelete: 'SET NULL',
     nullable: true,
   })
   @JoinColumn({ name: 'complejidad_id' })
   complejidad: ComplejidadEntity | null;
 
-  @ManyToOne(
-    () => EspecificidadServicioEntity,
-    (especificidad) => especificidad.criteriosAplicacion,
-    { onDelete: 'SET NULL', nullable: true },
-  )
+  @ManyToOne(() => EspecificidadServicioEntity, {
+    onDelete: 'SET NULL',
+    nullable: true,
+  })
   @JoinColumn({ name: 'especificidad_id' })
   especificidad: EspecificidadServicioEntity | null;
 }

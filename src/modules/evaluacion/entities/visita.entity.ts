@@ -57,31 +57,22 @@ export class VisitaEntity extends BaseAuditableEntity {
   @Column({ name: 'resultado_global', type: 'json', nullable: true })
   resultadoGlobal: Record<string, unknown> | null;
 
-  @ManyToOne(() => PrestadorEntity, (prestador) => prestador.visitas, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => PrestadorEntity, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'prestador_id' })
   prestador: PrestadorEntity;
 
-  @ManyToOne(() => SedeEntity, (sede) => sede.visitas, {
-    onDelete: 'SET NULL',
-    nullable: true,
-  })
+  @ManyToOne(() => SedeEntity, { onDelete: 'SET NULL', nullable: true })
   @JoinColumn({ name: 'sede_id' })
   sede: SedeEntity | null;
 
-  @ManyToOne(
-    () => ServicioHabilitadoEntity,
-    (servicio) => servicio.visitas,
-    { onDelete: 'SET NULL', nullable: true },
-  )
-  @JoinColumn({ name: 'servicio_habilitado_id' })
-  servicioHabilitado: ServicioHabilitadoEntity | null;
-
-  @ManyToOne(() => UsuarioEntity, (usuario) => usuario.visitasCreadas, {
+  @ManyToOne(() => ServicioHabilitadoEntity, {
     onDelete: 'SET NULL',
     nullable: true,
   })
+  @JoinColumn({ name: 'servicio_habilitado_id' })
+  servicioHabilitado: ServicioHabilitadoEntity | null;
+
+  @ManyToOne(() => UsuarioEntity, { onDelete: 'SET NULL', nullable: true })
   @JoinColumn({ name: 'creada_por_id' })
   creadaPor: UsuarioEntity | null;
 

@@ -11,12 +11,6 @@ import { PrestadorEstadoEnum } from '../../../common/enums';
 import { MunicipioEntity } from '../../catalogo/entities/municipio.entity';
 import { PrestadorEntity } from './prestador.entity';
 import { ServicioHabilitadoEntity } from './servicio-habilitado.entity';
-import { CapacidadInstaladaEntity } from '../../capacidad/entities/capacidad-instalada.entity';
-import { AutoevaluacionEntity } from '../../evaluacion/entities/autoevaluacion.entity';
-import { VisitaEntity } from '../../evaluacion/entities/visita.entity';
-import { NovedadEntity } from '../../novedad/entities/novedad.entity';
-import { CertificadoHabilitacionEntity } from '../../certificado/entities/certificado-habilitacion.entity';
-import { DistintivoHabilitacionEntity } from '../../certificado/entities/distintivo-habilitacion.entity';
 
 @Entity('sede')
 @Index('idx_sede_prestador', ['prestadorId'])
@@ -60,36 +54,10 @@ export class SedeEntity extends BaseAuditableEntity {
   @JoinColumn({ name: 'prestador_id' })
   prestador: PrestadorEntity;
 
-  @ManyToOne(() => MunicipioEntity, (municipio) => municipio.sedes, {
-    onDelete: 'RESTRICT',
-  })
+  @ManyToOne(() => MunicipioEntity, { onDelete: 'RESTRICT' })
   @JoinColumn({ name: 'municipio_id' })
   municipio: MunicipioEntity;
 
   @OneToMany(() => ServicioHabilitadoEntity, (servicio) => servicio.sede)
   serviciosHabilitados: ServicioHabilitadoEntity[];
-
-  @OneToMany(() => CapacidadInstaladaEntity, (capacidad) => capacidad.sede)
-  capacidadesInstaladas: CapacidadInstaladaEntity[];
-
-  @OneToMany(() => AutoevaluacionEntity, (autoeval) => autoeval.sede)
-  autoevaluaciones: AutoevaluacionEntity[];
-
-  @OneToMany(() => VisitaEntity, (visita) => visita.sede)
-  visitas: VisitaEntity[];
-
-  @OneToMany(() => NovedadEntity, (novedad) => novedad.sede)
-  novedades: NovedadEntity[];
-
-  @OneToMany(
-    () => CertificadoHabilitacionEntity,
-    (certificado) => certificado.sede,
-  )
-  certificados: CertificadoHabilitacionEntity[];
-
-  @OneToMany(
-    () => DistintivoHabilitacionEntity,
-    (distintivo) => distintivo.sede,
-  )
-  distintivos: DistintivoHabilitacionEntity[];
 }

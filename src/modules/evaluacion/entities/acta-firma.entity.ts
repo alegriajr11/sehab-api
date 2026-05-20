@@ -31,10 +31,7 @@ export class ActaFirmaEntity extends BaseAuditableEntity {
   @JoinColumn({ name: 'acta_id' })
   acta: ActaVisitaEntity;
 
-  @ManyToOne(() => UsuarioEntity, (usuario) => usuario.firmasActa, {
-    onDelete: 'SET NULL',
-    nullable: true,
-  })
+  @ManyToOne(() => UsuarioEntity, { onDelete: 'SET NULL', nullable: true })
   @JoinColumn({ name: 'usuario_id' })
   usuario: UsuarioEntity | null;
 }

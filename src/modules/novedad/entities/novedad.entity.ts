@@ -43,32 +43,25 @@ export class NovedadEntity extends BaseAuditableEntity {
   @Column({ name: 'documento_soporte_url', type: 'varchar', length: 500, nullable: true })
   documentoSoporteUrl: string | null;
 
-  @ManyToOne(() => PrestadorEntity, (prestador) => prestador.novedades, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => PrestadorEntity, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'prestador_id' })
   prestador: PrestadorEntity;
 
-  @ManyToOne(() => SedeEntity, (sede) => sede.novedades, {
-    onDelete: 'SET NULL',
-    nullable: true,
-  })
+  @ManyToOne(() => SedeEntity, { onDelete: 'SET NULL', nullable: true })
   @JoinColumn({ name: 'sede_id' })
   sede: SedeEntity | null;
 
-  @ManyToOne(
-    () => ServicioHabilitadoEntity,
-    (servicio) => servicio.novedades,
-    { onDelete: 'SET NULL', nullable: true },
-  )
+  @ManyToOne(() => ServicioHabilitadoEntity, {
+    onDelete: 'SET NULL',
+    nullable: true,
+  })
   @JoinColumn({ name: 'servicio_habilitado_id' })
   servicioHabilitado: ServicioHabilitadoEntity | null;
 
-  @ManyToOne(
-    () => CapacidadInstaladaEntity,
-    (capacidad) => capacidad.novedades,
-    { onDelete: 'SET NULL', nullable: true },
-  )
+  @ManyToOne(() => CapacidadInstaladaEntity, {
+    onDelete: 'SET NULL',
+    nullable: true,
+  })
   @JoinColumn({ name: 'capacidad_instalada_id' })
   capacidadInstalada: CapacidadInstaladaEntity | null;
 }

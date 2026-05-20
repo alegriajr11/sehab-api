@@ -27,9 +27,7 @@ export class FirmaDigitalEntity {
   @CreateDateColumn({ name: 'creada_en', type: 'datetime', precision: 6 })
   creadaEn: Date;
 
-  @OneToOne(() => UsuarioEntity, (usuario) => usuario.firmaDigital, {
-    onDelete: 'CASCADE',
-  })
+  @OneToOne(() => UsuarioEntity, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'usuario_id' })
   usuario: UsuarioEntity;
 }

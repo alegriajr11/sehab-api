@@ -52,27 +52,19 @@ export class AutoevaluacionEntity extends BaseAuditableEntity {
   })
   estado: AutoevaluacionEstadoEnum;
 
-  @ManyToOne(() => PrestadorEntity, (prestador) => prestador.autoevaluaciones, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => PrestadorEntity, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'prestador_id' })
   prestador: PrestadorEntity;
 
-  @ManyToOne(() => SedeEntity, (sede) => sede.autoevaluaciones, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => SedeEntity, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'sede_id' })
   sede: SedeEntity;
 
-  @ManyToOne(
-    () => ServicioHabilitadoEntity,
-    (servicio) => servicio.autoevaluaciones,
-    { onDelete: 'CASCADE' },
-  )
+  @ManyToOne(() => ServicioHabilitadoEntity, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'servicio_habilitado_id' })
   servicioHabilitado: ServicioHabilitadoEntity;
 
-  @ManyToOne(() => UsuarioEntity, (usuario) => usuario.autoevaluacionesCreadas, {
+  @ManyToOne(() => UsuarioEntity, {
     onDelete: 'SET NULL',
     nullable: true,
   })

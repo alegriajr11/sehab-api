@@ -29,24 +29,18 @@ export class DistintivoHabilitacionEntity extends BaseAuditableEntity {
   @Column({ name: 'url_imagen', type: 'varchar', length: 500, nullable: true })
   urlImagen: string | null;
 
-  @ManyToOne(() => PrestadorEntity, (prestador) => prestador.distintivos, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => PrestadorEntity, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'prestador_id' })
   prestador: PrestadorEntity;
 
-  @ManyToOne(() => SedeEntity, (sede) => sede.distintivos, {
-    onDelete: 'SET NULL',
-    nullable: true,
-  })
+  @ManyToOne(() => SedeEntity, { onDelete: 'SET NULL', nullable: true })
   @JoinColumn({ name: 'sede_id' })
   sede: SedeEntity | null;
 
-  @ManyToOne(
-    () => ServicioHabilitadoEntity,
-    (servicio) => servicio.distintivos,
-    { onDelete: 'SET NULL', nullable: true },
-  )
+  @ManyToOne(() => ServicioHabilitadoEntity, {
+    onDelete: 'SET NULL',
+    nullable: true,
+  })
   @JoinColumn({ name: 'servicio_habilitado_id' })
   servicioHabilitado: ServicioHabilitadoEntity | null;
 }

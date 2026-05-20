@@ -29,9 +29,7 @@ export class ActividadCriterioEntity {
   @JoinColumn({ name: 'actividad_id' })
   actividad: ActividadEntity;
 
-  @ManyToOne(() => CriterioEntity, (criterio) => criterio.actividadesCriterio, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => CriterioEntity, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'criterio_id' })
   criterio: CriterioEntity;
 }

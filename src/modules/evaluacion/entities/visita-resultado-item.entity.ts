@@ -48,17 +48,11 @@ export class VisitaResultadoItemEntity extends BaseAuditableEntity {
   @JoinColumn({ name: 'acta_id' })
   acta: ActaVisitaEntity | null;
 
-  @ManyToOne(() => CriterioEntity, (criterio) => criterio.visitaResultadoItems, {
-    onDelete: 'RESTRICT',
-  })
+  @ManyToOne(() => CriterioEntity, { onDelete: 'RESTRICT' })
   @JoinColumn({ name: 'criterio_id' })
   criterio: CriterioEntity;
 
-  @ManyToOne(
-    () => CriterioVersionEntity,
-    (version) => version.visitaResultadoItems,
-    { onDelete: 'RESTRICT' },
-  )
+  @ManyToOne(() => CriterioVersionEntity, { onDelete: 'RESTRICT' })
   @JoinColumn({ name: 'criterio_version_id' })
   criterioVersion: CriterioVersionEntity;
 }
