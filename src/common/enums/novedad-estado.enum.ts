@@ -1,0 +1,7 @@
+export enum NovedadEstadoEnum {
+  REPORTADA = 'REPORTADA',
+  EN_REVISION = 'EN_REVISION',
+  APROBADA = 'APROBADA',
+  RECHAZADA = 'RECHAZADA',
+  CERRADA = 'CERRADA',
+}

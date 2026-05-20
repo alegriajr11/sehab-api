@@ -1,0 +1,12 @@
+export { CatalogoModule } from './catalogo/catalogo.module';
+export { PrestadorModule } from './prestador/prestador.module';
+export { CapacidadModule } from './capacidad/capacidad.module';
+export { EstandarModule } from './estandar/estandar.module';
+export { EvaluacionModule } from './evaluacion/evaluacion.module';
+export { PlanificacionModule } from './planificacion/planificacion.module';
+export { NovedadModule } from './novedad/novedad.module';
+export { CertificadoModule } from './certificado/certificado.module';
+export { MediaModule } from './media/media.module';
+export { UsuarioModule } from './usuario/usuario.module';
+export { PamecModule } from './pamec/pamec.module';
+export { FirmaModule } from './firma/firma.module';

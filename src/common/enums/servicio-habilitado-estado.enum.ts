@@ -1,0 +1,6 @@
+export enum ServicioHabilitadoEstadoEnum {
+  HABILITADO = 'HABILITADO',
+  DESHABILITADO = 'DESHABILITADO',
+  EN_TRAMITE = 'EN_TRAMITE',
+  SUSPENDIDO = 'SUSPENDIDO',
+}

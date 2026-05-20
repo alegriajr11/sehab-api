@@ -1,0 +1,7 @@
+export enum PlanVisitasEstadoEnum {
+  BORRADOR = 'BORRADOR',
+  FORMULADO = 'FORMULADO',
+  APROBADO = 'APROBADO',
+  VIGENTE = 'VIGENTE',
+  CERRADO = 'CERRADO',
+}
