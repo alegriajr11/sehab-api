@@ -6,6 +6,7 @@ import { UsuarioEntity } from '../../usuario/entities/usuario.entity';
 @Entity('visita_participante')
 @Index('idx_visita_participante_visita', ['visitaId'])
 @Index('idx_visita_participante_usuario', ['usuarioId'])
+@Index('uq_visita_participante_usuario', ['visitaId', 'usuarioId'], { unique: true })
 export class VisitaParticipanteEntity extends BaseAuditableEntity {
   @Column({ name: 'visita_id', type: 'bigint', unsigned: true })
   visitaId: number;

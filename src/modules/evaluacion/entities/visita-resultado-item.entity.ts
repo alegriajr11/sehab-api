@@ -10,6 +10,7 @@ import { CriterioVersionEntity } from '../../estandar/entities/criterio-version.
 @Index('idx_visita_resultado_visita', ['visitaId'])
 @Index('idx_visita_resultado_acta', ['actaId'])
 @Index('idx_visita_resultado_criterio', ['criterioId'])
+@Index('uq_visita_resultado_criterio', ['visitaId', 'criterioId'], { unique: true })
 export class VisitaResultadoItemEntity extends BaseAuditableEntity {
   @Column({ name: 'visita_id', type: 'bigint', unsigned: true })
   visitaId: number;

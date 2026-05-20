@@ -11,6 +11,7 @@ import { ServicioCatalogoEntity } from './servicio-catalogo.entity';
 @Entity('especificidad_servicio')
 @Index('idx_especificidad_servicio_catalogo', ['servicioCatalogoId'])
 @Index('idx_especificidad_servicio_codigo', ['codigo'])
+@Index('uq_especificidad_servicio_codigo', ['servicioCatalogoId', 'codigo'], { unique: true })
 export class EspecificidadServicioEntity extends BaseCatalogEntity {
   @Column({ name: 'servicio_catalogo_id', type: 'bigint', unsigned: true })
   servicioCatalogoId: number;

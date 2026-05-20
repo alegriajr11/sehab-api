@@ -17,6 +17,11 @@ import { CapacidadMovimientoEntity } from './capacidad-movimiento.entity';
 @Index('idx_capacidad_instalada_prestador', ['prestadorId'])
 @Index('idx_capacidad_instalada_sede', ['sedeId'])
 @Index('idx_capacidad_instalada_servicio', ['servicioHabilitadoId'])
+@Index(
+  'uq_capacidad_instalada_servicio_tipo',
+  ['servicioHabilitadoId', 'capacidadTipoId'],
+  { unique: true },
+)
 export class CapacidadInstaladaEntity extends BaseAuditableEntity {
   @Column({ name: 'prestador_id', type: 'bigint', unsigned: true })
   prestadorId: number;

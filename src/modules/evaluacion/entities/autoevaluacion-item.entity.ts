@@ -8,6 +8,7 @@ import { CriterioVersionEntity } from '../../estandar/entities/criterio-version.
 @Entity('autoevaluacion_item')
 @Index('idx_autoevaluacion_item_autoevaluacion', ['autoevaluacionId'])
 @Index('idx_autoevaluacion_item_criterio', ['criterioId'])
+@Index('uq_autoevaluacion_item_criterio', ['autoevaluacionId', 'criterioId'], { unique: true })
 export class AutoevaluacionItemEntity extends BaseAuditableEntity {
   @Column({ name: 'autoevaluacion_id', type: 'bigint', unsigned: true })
   autoevaluacionId: number;

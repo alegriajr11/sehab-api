@@ -11,8 +11,8 @@ export class PlanVisitasEntity extends BaseAuditableEntity {
   @Column({ name: 'entidad_territorial', type: 'varchar', length: 255 })
   entidadTerritorial: string;
 
-  @Column({ type: 'varchar', length: 20 })
-  vigencia: string;
+  @Column({ type: 'smallint', unsigned: true })
+  vigencia: number;
 
   @Column({ name: 'fecha_formulado', type: 'date', nullable: true })
   fechaFormulado: Date | null;

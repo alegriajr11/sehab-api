@@ -9,6 +9,11 @@ import { EspecificidadServicioEntity } from '../../catalogo/entities/especificid
 @Entity('criterio_aplicacion')
 @Index('idx_criterio_aplicacion_criterio', ['criterioId'])
 @Index('idx_criterio_aplicacion_servicio', ['servicioCatalogoId'])
+@Index(
+  'uq_criterio_aplicacion_combinacion',
+  ['criterioId', 'servicioCatalogoId', 'modalidadId', 'complejidadId', 'especificidadId'],
+  { unique: true },
+)
 export class CriterioAplicacionEntity extends BaseCatalogEntity {
   @Column({ name: 'criterio_id', type: 'bigint', unsigned: true })
   criterioId: number;

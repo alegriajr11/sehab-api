@@ -18,6 +18,11 @@ import { EspecificidadServicioEntity } from '../../catalogo/entities/especificid
 @Index('idx_servicio_habilitado_catalogo', ['servicioCatalogoId'])
 @Index('idx_servicio_habilitado_codigo', ['codigoHabilitacion'])
 @Index('idx_servicio_habilitado_estado', ['estado'])
+@Index(
+  'uq_servicio_habilitado_combinacion',
+  ['sedeId', 'servicioCatalogoId', 'modalidadId', 'complejidadId', 'especificidadId'],
+  { unique: true },
+)
 export class ServicioHabilitadoEntity extends BaseAuditableEntity {
   @Column({ name: 'sede_id', type: 'bigint', unsigned: true })
   sedeId: number;

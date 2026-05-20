@@ -16,7 +16,7 @@ export class CapacidadMovimientoEntity extends BaseAuditableEntity {
   })
   movimiento: CapacidadMovimientoTipoEnum;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', unsigned: true })
   cantidad: number;
 
   @Column({ name: 'fecha_movimiento', type: 'datetime' })

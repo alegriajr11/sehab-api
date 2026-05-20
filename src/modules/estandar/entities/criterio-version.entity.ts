@@ -5,6 +5,7 @@ import { CriterioEntity } from './criterio.entity';
 @Entity('criterio_version')
 @Index('idx_criterio_version_criterio', ['criterioId'])
 @Index('idx_criterio_version_vigencia', ['fechaVigenciaDesde', 'fechaVigenciaHasta'])
+@Index('uq_criterio_version', ['criterioId', 'version'], { unique: true })
 export class CriterioVersionEntity extends BaseCatalogEntity {
   @Column({ name: 'criterio_id', type: 'bigint', unsigned: true })
   criterioId: number;
